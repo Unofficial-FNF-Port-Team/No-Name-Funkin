@@ -19,11 +19,11 @@ jobs:
       - name: Install Libraries
         run: |
          git submodule update --init --recursive
-         haxelib --global install hmm
+         haxelib --global git haxelib https://github.com/FunkinCrew/haxelib.git
+         haxelib --global git hmm  https://github.com/FunkinCrew/hmm.git
          haxelib --global run hmm setup
          haxelib run hmm install
          haxelib run lime setup
-         haxelib lime rebuild cpp
 
       # - name: Configure Android
         # run: |
