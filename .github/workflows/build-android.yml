@@ -6,7 +6,7 @@ jobs:
   build:
     name: Android Build
     permissions: write-all
-    runs-on: build-set
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@main
