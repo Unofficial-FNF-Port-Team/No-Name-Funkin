@@ -25,8 +25,9 @@ jobs:
          haxelib run hmm install
          haxelib run lime setup
 
-      # - name: Configure Android
-        # run: |
+      - name: Configure Android
+        run: |
+          haxelib lime setup android
           # haxelib run lime setup -alias -y
           # haxelib run lime config ANDROID_SDK $ANDROID_HOME
           # haxelib run lime config ANDROID_NDK_ROOT $ANDROID_NDK_LATEST_HOME
