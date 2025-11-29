@@ -18,6 +18,7 @@ jobs:
 
       - name: Install Libraries
         run: |
+         git submodule update --init --recursive
          haxelib --global install hmm
          haxelib --global run hmm setup
          haxelib run hmm install
