@@ -35,7 +35,7 @@ jobs:
           haxelib run lime config ANDROID_SETUP true
 
       - name: Compile
-        run: haxelib run lime build android -DGITHUB_BUILD
+        run: haxelib run lime build android -release
 
       - name: Upload Artifact
         uses: actions/upload-artifact@main
