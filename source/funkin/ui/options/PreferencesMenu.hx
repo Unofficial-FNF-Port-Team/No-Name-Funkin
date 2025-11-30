@@ -138,6 +138,19 @@ class PreferencesMenu extends Page<OptionsState.OptionsMenuPageName>
       Preferences.hapticsIntensityMultiplier = value;
     }, null, Preferences.hapticsIntensityMultiplier, 0.1, 5, 0.1, 1);
     #end
+    createPrefItemEnum('Control Scheme', 'Choose the type of control you want.', [
+      "Arrows" => FunkinHitboxControlSchemes.Arrows, //Who came up with this stupid idea? :3
+      "Four Lanes" => FunkinHitboxControlSchemes.FourLanes, //I love this
+      "D-Pad" => FunkinHitboxControlSchemes.DoubleThumbDPad, //Honestly, I don't know... and I don't want to know what it is.
+    ], function(key:String, value:FunkinHitboxControlSchemes):Void {
+      Preferences.controlsScheme = value;
+    }, switch (Preferences.controlsScheme)
+      {
+        case FunkinHitboxControlSchemes.Arrows: "Arrows";
+        case FunkinHitboxControlSchemes.FourLanes: "Four Lanes";
+        case FunkinHitboxControlSchemes.DoubleThumbDPad: "D-Pad";
+        default: "Arrows";
+      });
     createPrefItemCheckbox('Flashing Lights', 'If disabled, it will dampen flashing effects. Useful for people with photosensitive epilepsy.',
       function(value:Bool):Void {
         Preferences.flashingLights = value;
