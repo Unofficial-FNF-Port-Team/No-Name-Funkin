@@ -142,6 +142,8 @@ class PreferencesMenu extends Page<OptionsState.OptionsMenuPageName>
       "Arrows" => FunkinHitboxControlSchemes.Arrows, //Who came up with this stupid idea? :3
       "Four Lanes" => FunkinHitboxControlSchemes.FourLanes, //I love this
       "D-Pad" => FunkinHitboxControlSchemes.DoubleThumbDPad, //Honestly, I don't know... and I don't want to know what it is.
+      "D-Square" => FunkinHitboxControlSchemes.DoubleThumbSquare,
+      "D-Triangle" => FunkinHitboxControlSchemes.DoubleThumbTriangle,
     ], function(key:String, value:FunkinHitboxControlSchemes):Void {
       Preferences.controlsScheme = value;
     }, switch (Preferences.controlsScheme)
@@ -149,6 +151,8 @@ class PreferencesMenu extends Page<OptionsState.OptionsMenuPageName>
         case FunkinHitboxControlSchemes.Arrows: "Arrows";
         case FunkinHitboxControlSchemes.FourLanes: "Four Lanes";
         case FunkinHitboxControlSchemes.DoubleThumbDPad: "D-Pad";
+        case FunkinHitboxControlSchemes.DoubleThumbSquare: "D-Square";
+        case FunkinHitboxControlSchemes.DoubleThumbTriangle: "D-Triangle";
         default: "Arrows";
       });
     createPrefItemCheckbox('Flashing Lights', 'If disabled, it will dampen flashing effects. Useful for people with photosensitive epilepsy.',
