@@ -14,6 +14,7 @@ import flixel.group.FlxGroup;
 import flixel.util.FlxSignal;
 import funkin.audio.FunkinSound;
 import funkin.ui.mainmenu.MainMenuState;
+import funkin.ui.modmenu.ModMenuState;
 import funkin.ui.MusicBeatState;
 import funkin.graphics.shaders.HSVShader;
 import funkin.input.Controls;
@@ -175,6 +176,7 @@ class OptionsMenu extends Page<OptionsMenuPageName>
     // createItem("CONTROL SCHEMES", function() {
     //   FlxG.state.openSubState(new ControlsSchemeMenu());
     // });
+    createItem("MOD MENU TEST", function() FlxG.switchState(new ModMenuState()));
     #if FEATURE_LAG_ADJUSTMENT
     createItem("LAG ADJUSTMENT", function() {
       FlxG.sound.music.fadeOut(0.5, 0, function(tw) {
