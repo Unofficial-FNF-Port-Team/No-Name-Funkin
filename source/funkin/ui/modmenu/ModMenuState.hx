@@ -1,12 +1,15 @@
 package funkin.ui.modmenu;
 
 import funkin.ui.MusicBeatState;
+import funkin.ui.options.OptionsState;
 import funkin.modding.PolymodHandler;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.text.FlxText;
+import flixel.FlxSprite;
 import flixel.util.FlxColor;
 import polymod.Polymod.ModMetadata;
 #if FEATURE_TOUCH_CONTROLS
+import funkin.mobile.ui.FunkinBackButton;
 import funkin.util.SwipeUtil;
 #end
 
