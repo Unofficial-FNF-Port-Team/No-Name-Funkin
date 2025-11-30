@@ -1,5 +1,6 @@
 package funkin.ui.modmenu;
 
+import funkin.ui.MusicBeatState;
 import funkin.modding.PolymodHandler;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.text.FlxText;
