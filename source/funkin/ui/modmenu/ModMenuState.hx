@@ -20,16 +20,6 @@ class ModMenuState extends MusicBeatState {
 
   var curSelected:Int = 0;
 
-  public function new():Void
-  {
-    super();
-
-    grpMods = new FlxTypedGroup<ModMenuItem>();
-    add(grpMods);
-
-    refreshModList();
-  }
-
   override public function create():Void
   {
     super.create();
@@ -42,10 +32,14 @@ class ModMenuState extends MusicBeatState {
     bg.screenCenter();
     add(bg);
 
+    grpMods = new FlxTypedGroup<ModMenuItem>();
+    add(grpMods);
+
    #if FEATURE_TOUCH_CONTROLS
     var backButton:FunkinBackButton = new FunkinBackButton(FlxG.width - 230, FlxG.height - 200, FlxColor.WHITE, exitModMenu, 1.0);
     add(backButton);
    #end
+    refreshModList();
   }
 
   override function update(elapsed:Float)
