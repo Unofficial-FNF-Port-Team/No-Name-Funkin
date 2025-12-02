@@ -21,6 +21,11 @@ class ModMenuState extends MusicBeatState {
   var enabledMods:Array<ModMetadata> = [];
   var detectedMods:Array<ModMetadata> = [];
 
+   // Hello PeakSlice
+  var lastTapTime:Float = 0;
+  var lastTapIndex:Int = -1;
+  var DOUBLE_TAP_THRESHOLD:Float = 0.3; // 300ms
+
   var curSelected:Int = 0;
 
   override public function create():Void
@@ -43,6 +48,7 @@ class ModMenuState extends MusicBeatState {
     add(backButton);
    #end
     refreshModList();
+    organizeByY();
   }
 
   override function update(elapsed:Float)
@@ -55,11 +61,46 @@ class ModMenuState extends MusicBeatState {
     if (SwipeUtil.justSwipedUp) selections(-1);
     if (SwipeUtil.justSwipedDown) selections(1);
   #end
+    organizeByY();
 
     if (controls.UI_UP_P) selections(-1);
     if (controls.UI_DOWN_P) selections(1);
 
     if (FlxG.keys.justPressed.SPACE) grpMods.members[curSelected].modEnabled = !grpMods.members[curSelected].modEnabled;
+
+     //Thanks PeakSlice LOL
+    if (FlxG.mouse.justPressed)
+    {
+      var currentTime = Sys.time();
+      var tappedIndex = -1;
+
+      for (i in 0...grpMods.length)
+      {
+        var item = grpMods.members[i];
+        if (FlxG.mouse.overlaps(item))
+        {
+          tappedIndex = i;
+          break;
+        }
+      }
+
+      if (tappedIndex >= 0)
+      {
+        if (tappedIndex == lastTapIndex && (currentTime - lastTapTime) < DOUBLE_TAP_THRESHOLD)
+        {
+          //toggleModState(tappedIndex);
+          grpMods.members[curSelected].modEnabled = !grpMods.members[curSelected].modEnabled;
+        }
+        else
+        {
+          curSelected = tappedIndex;
+          selections(0); // Just update selection visuals
+        }
+
+        lastTapTime = currentTime;
+        lastTapIndex = tappedIndex;
+      }
+    }
 
     if (FlxG.keys.justPressed.I && curSelected != 0)
     {
@@ -116,7 +157,8 @@ class ModMenuState extends MusicBeatState {
     {
       var modMetadata = detectedMods[index];
       var modItem = new ModMenuItem(-40, 40 + (50 * index), 0, modMetadata.title, 32, modMetadata);
-      modItem.setFormat(Paths.font('vcr.ttf'), 58);
+      //modItem.setFormat(Paths.font('vcr.ttf'), 58);
+      modItem.font = "5by7";
 
       var delay:Float = index * 0.05;
       FlxTween.tween(modItem, {x: 40}, 1, {startDelay: delay, ease: FlxEase.cubeOut});
