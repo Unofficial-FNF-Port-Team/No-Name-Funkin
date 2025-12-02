@@ -111,11 +111,16 @@ class ModMenuState extends MusicBeatState {
 
     for (index in 0...detectedMods.length)
     {
-      var modMetadata:ModMetadata = detectedMods[index];
-      var modName:String = modMetadata.title;
-      var txt:ModMenuItem = new ModMenuItem(0, 10 + (40 * index), 0, modName, 32);
-      txt.text = modName;
-      grpMods.add(txt);
+      var modMetadata = detectedMods[index];
+      var modItem = new ModMenuItem(-40, 40 + (50 * index), 0, modMetadata.title, 32, modMetadata);
+      modItem.setFormat(Paths.font('vcr.ttf'), 58);
+
+      var delay:Float = index * 0.05;
+      FlxTween.tween(modItem, {x: 40}, 1, {startDelay: delay, ease: FlxEase.cubeOut});
+
+      modItem.modEnabled = Save.instance.enabledModIds.indexOf(modMetadata.id) != -1;
+
+      grpMods.add(modItem);
     }
     #end
   }
@@ -139,10 +144,15 @@ class ModMenuItem extends FlxText
 {
   public var modEnabled:Bool = false;
   public var daMod:String;
+  public var modMetadata:ModMetadata;
+  public var defaultColor:FlxColor = FlxColor.WHITE;
 
-  public function new(x:Float, y:Float, w:Float, str:String, size:Int)
+  public function new(x:Float, y:Float, w:Float, str:String, size:Int, metadata:ModMetadata)
   {
     super(x, y, w, str, size);
+    daMod = metadata.id;
+    modMetadata = metadata;
+    modEnabled = false;
   }
 
   override function update(elapsed:Float)
