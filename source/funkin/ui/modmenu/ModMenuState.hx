@@ -174,7 +174,7 @@ class ModMenuState extends MusicBeatState {
   {
     for (i in 0...grpMods.length)
     {
-      grpMods.members[i].y = 210 + (50 * i) + scrollOF;
+      grpMods.members[i].y = 210 + (50 * i);
       grpMods.members[i].x = 40;
     }
   }
