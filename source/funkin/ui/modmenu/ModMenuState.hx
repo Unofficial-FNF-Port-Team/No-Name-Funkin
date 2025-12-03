@@ -186,6 +186,7 @@ class ModMenuState extends MusicBeatState {
   }
 }
 
+//PeakSlice
 class ModMenuItem extends FlxText
 {
   public var modEnabled:Bool = false;
@@ -196,17 +197,33 @@ class ModMenuItem extends FlxText
   public function new(x:Float, y:Float, w:Float, str:String, size:Int, metadata:ModMetadata)
   {
     super(x, y, w, str, size);
-    daMod = metadata.id;
+    modId = metadata.id;
     modMetadata = metadata;
     modEnabled = false;
+    setModState(false);
+  }
+
+  public function setModState(enabled:Bool):Void
+  {
+    modEnabled = enabled;
+    if (enabled)
+    {
+      color = FlxColor.LIME;
+      alpha = 1.0;
+      text = modMetadata.title + " (Enabled)";
+      defaultColor = FlxColor.LIME;
+    }
+    else
+    {
+      color = FlxColor.WHITE;
+      alpha = 0.5;
+      text = modMetadata.title;
+      defaultColor = FlxColor.WHITE;
+    }
   }
 
   override function update(elapsed:Float)
   {
-    if (modEnabled) alpha = 1;
-    else
-      alpha = 0.5;
-
     super.update(elapsed);
   }
 }
