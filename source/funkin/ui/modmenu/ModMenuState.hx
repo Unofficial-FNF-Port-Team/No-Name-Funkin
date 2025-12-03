@@ -197,7 +197,7 @@ class ModMenuItem extends FlxText
   public function new(x:Float, y:Float, w:Float, str:String, size:Int, metadata:ModMetadata)
   {
     super(x, y, w, str, size);
-    modId = metadata.id;
+    daMod = metadata.id;
     modMetadata = metadata;
     modEnabled = false;
     setModState(false);
