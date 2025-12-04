@@ -88,8 +88,8 @@ class ModMenuState extends MusicBeatState {
       {
         if (tappedIndex == lastTapIndex && (currentTime - lastTapTime) < DOUBLE_TAP_THRESHOLD)
         {
-          //toggleModState(tappedIndex);
-          grpMods.members[curSelected].modEnabled = !grpMods.members[curSelected].modEnabled;
+          toggleModState(tappedIndex);
+          //grpMods.members[curSelected].modEnabled = !grpMods.members[curSelected].modEnabled;
         }
         else
         {
@@ -139,6 +139,37 @@ class ModMenuState extends MusicBeatState {
     }
 
     organizeByY();
+  }
+
+  function toggleModState(index:Int):Void
+  {
+    if (index < 0 || index >= detectedMods.length) return;
+
+    var modMetadata = detectedMods[index];
+    var modItem = grpMods.members[index];
+    var isEnabled = Save.instance.enabledModIds.indexOf(modMetadata.id) != -1;
+
+    if (isEnabled)
+    {
+      // Disable mod
+      var newIds = Save.instance.enabledModIds.copy();
+      newIds.remove(modMetadata.id);
+      Save.instance.enabledModIds = newIds; // Use setter
+      modItem.setModState(false);
+      //statusText.text = "$modMetadata.title disabled";
+    }
+    else
+    {
+      // Enable mod
+      var newIds = Save.instance.enabledModIds.copy();
+      if (newIds.indexOf(modMetadata.id) == -1) newIds.push(modMetadata.id);
+      Save.instance.enabledModIds = newIds; // Use setter
+      modItem.setModState(true);
+      //statusText.text = "$modMetadata.title enabled";
+    }
+    Save.instance.debug_dumpSave();
+    // Show restart prompt
+    //statusText.text = "Changes saved!";
   }
 
   function refreshModList():Void
