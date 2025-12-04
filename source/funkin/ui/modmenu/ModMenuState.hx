@@ -167,7 +167,7 @@ class ModMenuState extends MusicBeatState {
       modItem.setModState(true);
       //statusText.text = "$modMetadata.title enabled";
     }
-    Save.instance.debug_dumpSave();
+    //Save.instance.debug_dumpSave();
     // Show restart prompt
     //statusText.text = "Changes saved!";
   }
