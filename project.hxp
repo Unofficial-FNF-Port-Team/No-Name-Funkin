@@ -42,12 +42,12 @@ class Project extends HXProject
   /**
    * The game's name. Used as the default window title.
    */
-  static final TITLE:String = "Cream's V-Slice";
+  static final TITLE:String = "StarSlice";
 
   /**
    * A package name used for identifying the app on various app stores.
    */
-  static final PACKAGE_NAME:String = "me.funkin.cvs";
+  static final PACKAGE_NAME:String = "me.starslice.fnf";
 
   /**
    * The name of the generated executable file.
