@@ -27,7 +27,7 @@ class Save implements ConsoleClass
   public static final SAVE_DATA_VERSION_RULE:thx.semver.VersionRule = ">=2.1.0 <2.2.0";
 
   // We load this version's saves from a new save path, to maintain SOME level of backwards compatibility.
-  static final SAVE_PATH:String = 'FunkinCrew';
+  static final SAVE_PATH:String = 'StarSlice';
   static final SAVE_NAME:String = 'Funkin';
 
   static final SAVE_PATH_LEGACY:String = 'ninjamuffin99';
